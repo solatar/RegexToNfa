@@ -1,3 +1,7 @@
-/RegexToNfa/nbproject
-/RegexToNfa/target
-/RegexToNfa/nbactions.xml
+
+/nbproject
+/target
+/nbactions.xml
+/mvnw
+/mvnw.cmd
+
