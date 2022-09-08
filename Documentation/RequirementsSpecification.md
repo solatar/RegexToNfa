@@ -8,20 +8,20 @@ The purpose of RegexToNfa application is very simple:
 
 A user can
 
--[] enter a regular expression and a string of their choice into the graphic user interface
+-[ ] enter a regular expression and a string of their choice into the graphic user interface
 
--[] check whether the string belongs to the language specified by the regular expression
+-[ ] check whether the string belongs to the language specified by the regular expression
 
 The application will
--[] build a non-finite automaton from the given regex
+-[ ] build a non-finite automaton from the given regex
 
--[] simulate the NFA with the given string to see whether it is accepted
+-[ ] simulate the NFA with the given string to see whether it is accepted
 
--[] display the result (true/false) 
+-[ ] display the result (true/false) 
 
 Possible other functions
 
--[] display the formulated NFA in some form
+-[ ] display the formulated NFA in some form
 
 The allowed operations in the regular expression are concatenation, closure, binary or and parentheses. The app will convert the regex entered by user
 to postfix notation using Shunting-Yard algorithm. I plan to use  Thompson's construction for building an NFA from the regex.
