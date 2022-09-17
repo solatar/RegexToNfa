@@ -17,4 +17,4 @@ mvn exec:java -Dexec.mainClass=tira.regextonfa.RegexToNfa
 ### Weekly progress ###
 
 [Week 1](https://github.com/solatar/RegexToNfa/blob/master/Documentation/1WeeklyReport.md)
-
+[Week 2](https://github.com/solatar/RegexToNfa/blob/master/Documentation/2WeeklyReport.md)
