@@ -42,6 +42,8 @@ public class RegexToNfa extends Application {
             String newString = String.valueOf(stringToTest.getText());
             String newPostfix = shunting.infixToPostfix(newRegex);
             postfix.setText(newPostfix);
+            Nfa nfa = new Nfa(newPostfix);
+            System.out.println(nfa.constructNfa());
         });
         myStage.setScene( myScene);
         myStage.show();   
