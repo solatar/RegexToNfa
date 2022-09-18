@@ -22,9 +22,9 @@ public class RegexToNfa extends Application {
         window.setVgap(5);
         window.setAlignment(Pos.CENTER);
 
-        Scene myScene = new Scene(window, 600, 500 );
+        Scene myScene = new Scene(window, 800, 500 );
 
-        window.add( new Label("Enter regular expression:"), 0,0); 
+        window.add( new Label("Enter regular expression with concatenation operator '+':"), 0,0); 
         TextField regex = new TextField();
         window.add(regex, 1, 0);
         window.add(new Label ("Enter string you want to test:"), 0, 1); 

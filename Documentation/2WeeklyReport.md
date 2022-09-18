@@ -13,3 +13,7 @@ as concatenated characters. I will have to modify my Shunting-Yard method accord
 
 The parsing method in Nfa.java class is not yet ready and, therefore, there are no tests for this class. Generally, testing and
 documentation have been on hold this week. I'll try to catch up next week.
+
+Sunday update: I fixed an error in operator precedence in my Shunting-Yard algorithm and modified the user interface. User is now 
+instructed to use concatenation operator '+'. Parsing method is almost ready but the resulting in NFA is not yet in a graph (array)
+form.

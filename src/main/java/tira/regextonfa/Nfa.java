@@ -20,14 +20,15 @@ public class Nfa {
         for (int i=0; i<n; i++) {
             char current = regex.charAt(i);
             if (Character.isLetterOrDigit(current)) {
-                Node node = new Node(i+nodeNumber);
+                Node node = new Node(i);
                 Transition trans = new Transition(node, current);
+                node.edges.add(trans);
                 Fragment frag = new Fragment(node);
                 frag.pointers.add(trans);
                 stack.push(frag);
             }
             //concatenation
-            if (current == '.') {
+            if (current == '+') {
                 Fragment second = stack.pop();
                 Fragment conc = stack.pop();               
                 for (Transition trans : conc.getPointers()) {
@@ -40,28 +41,44 @@ public class Nfa {
             if (current == '|') {
                 Fragment second = stack.pop();
                 Fragment first = stack.pop();       
-                Node newStart = new Node(i+nodeNumber);
+                Node newStart = new Node(i);
                 newStart.getEdges().add(new Transition(newStart, e, first.getStart()));
                 newStart.getEdges().add(new Transition(newStart, e, second.getStart()));
+                
                 Fragment alt = new Fragment(newStart);
                 HashSet<Transition> newPointers = alt.merge(first, second);
-                stack.push(alt);                
+                alt.setPointers(newPointers);
+                stack.push(alt);         
             }
             //closure
             if (current == '*') {
                 Fragment closure = stack.pop();
-                Node newStart = new Node (i+nodeNumber);
+                Node newStart = new Node (i);
                 newStart.getEdges().add(new Transition(newStart, e, closure.getStart()));
                 closure.setStart(newStart);
-                Node newEnd = new Node(i+nodeNumber);
+                Node newEnd = new Node(i+1);
                 for (Transition trans : closure.getPointers()) {
                     trans.setY(newEnd);
+                    newEnd.edges.add(trans);
                 }
-                Transition trans = new Transition(newStart, e, newEnd);
-                stack.push(closure);             
+                Transition trans = new Transition(newEnd, e, newStart);
+                newStart.edges.add(trans);
+                stack.push(closure);         
             }
         }
         Fragment automaton = stack.pop();
+        if (automaton.getPointers().isEmpty()) {
+            return automaton;
+        } else {
+            Node newEnd = new Node(n+1);        
+            for (Transition trans : automaton.getPointers()) {
+                if (trans.y == null) {
+                    trans.setY(newEnd);
+                    newEnd.edges.add(trans);
+                }     
+            } 
+            Transition trans = new Transition(newEnd, e, automaton.getStart());
+        } 
         return automaton;
     }
 }
