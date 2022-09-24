@@ -11,29 +11,42 @@ public class ShuntingYard {
 	}
         return true;
     }    
-    // Operator having higher precedence value will be returned    
+    /**
+     * @param char
+     * @return an Integer value representing the precedence
+     * of an operator in a regular expression
+     */   
     public int getPrecedence(char ch)	{
-	if (ch == '+') {
+	if (ch == '.') {
             return 1;
         }
         else if (ch == '|') {
             return 2;
         } 
-	if (ch == '*') {
+        else if (ch == '*') {
             return 3;
         }
         else  return -1;               
     }
-	
-	// Operator has Left --> Right associativity
+
+    /**
+     * Checks if an operator has Left -> Right associativity
+     * 
+     * @param char 
+     * @return boolean value
+     */
     public boolean hasLeftAssociativity(char ch) {
-	if (ch == '+' || ch == '|' || ch == '*') {
+	if (ch == '.' || ch == '|' || ch == '*') {
             return true;
 	} else {
             return false;
         }
     }   
 
+    /**
+     * Converts a regex from infix to postfix     * 
+     * @param expression
+     */
     public String infixToPostfix(String expression){
         // Initialising an empty String
         // (for output) and an empty stack
@@ -61,7 +74,9 @@ public class ShuntingYard {
             else if (c == ')') {
                 while (!stack.isEmpty() 
                     && stack.peek() != '(') {
-                    output += stack.pop();          
+                    char next = stack.pop();
+                    System.out.println(next);
+                    output += next;     
                 }
                 stack.pop();
             }
@@ -72,12 +87,13 @@ public class ShuntingYard {
                 stack.push(c);
             }
             else {
-                while (!stack.isEmpty() && getPrecedence(c)<= getPrecedence(stack.peek())) {
+                while (!stack.isEmpty() && 
+                        getPrecedence(c)<= getPrecedence(stack.peek())
+                        && hasLeftAssociativity(c)) {
                     output += stack.pop();
                 }
                 stack.push(c);
-            }    
- 
+            }     
         }
         // pop all the remaining operators from
         // the stack and append them to output

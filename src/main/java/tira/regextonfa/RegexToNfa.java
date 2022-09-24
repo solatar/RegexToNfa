@@ -17,35 +17,32 @@ public class RegexToNfa extends Application {
         myStage.setTitle("Test your string");   
         ShuntingYard shunting = new ShuntingYard();
         GridPane window = new GridPane();
-        window.setPadding( new Insets(15));
+        window.setPadding(new Insets(15));
         window.setHgap(5);
         window.setVgap(5);
         window.setAlignment(Pos.CENTER);
-
         Scene myScene = new Scene(window, 800, 500 );
-
-        window.add( new Label("Enter regular expression with concatenation operator '+':"), 0,0); 
+        window.add( new Label("Enter regular expression with concatenation "
+                + "operator '.':"), 0,0); 
         TextField regex = new TextField();
         window.add(regex, 1, 0);
-        window.add(new Label ("Enter string you want to test:"), 0, 1); 
+        window.add(new Label ("Enter string you want to test:"),0,1); 
         TextField stringToTest = new TextField();
-        window.add(stringToTest, 1, 1);      
-
-                 
-        Button button = new Button("Convert"); window.add(button, 1, 2);
+        window.add(stringToTest,1,1);                       
+        Button button = new Button("Convert"); window.add(button,1,2);
         window.setAlignment(Pos.BASELINE_CENTER);
         TextField postfix = new TextField();
-        window.add( new Label("Postfix notation:"), 0,3); 
-        window.add(postfix, 1, 3);
+        window.add(new Label("Postfix notation:"),0,3); 
+        window.add(postfix,1,3);
         button.setOnAction(e -> {
-            String newRegex = String.valueOf(regex.getText());
+            String newRegex = String.valueOf(regex.getText()).trim();
             String newString = String.valueOf(stringToTest.getText());
             String newPostfix = shunting.infixToPostfix(newRegex);
             postfix.setText(newPostfix);
             Nfa nfa = new Nfa(newPostfix);
-            System.out.println(nfa.constructNfa());
+            nfa.constructNfa();
         });
-        myStage.setScene( myScene);
+        myStage.setScene(myScene);
         myStage.show();   
     }    
 

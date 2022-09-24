@@ -28,13 +28,13 @@ public class ShuntingYardTest {
     
     @Test
     public void precedenceOfOperatorsIsCorrect() {
-        String chars = "a+b*";
+        String chars = "a|b.c*";
         int l = chars.length();
         int sum = 0;
         for (int i = 0; i < l; i++) {
             char c = chars.charAt(i);
             sum = sum += sy.getPrecedence(c);
         }
-        assertEquals(1, sum);
+        assertEquals(3, sum);
     }    
 }

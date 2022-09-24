@@ -3,9 +3,15 @@ package tira.regextonfa;
 import java.util.HashSet;
 
 public class Fragment {
-    public Node start;
-    public HashSet<Transition> pointers;
+    Node start;
+    HashSet<Transition> pointers;
 
+    /**
+     * A fragment is a partial NFA represented by its starting node
+     * and outgoing arrows. Other nodes and edges are not tracked. 
+     * A fragment does not have an accept state.
+     * @param start 
+     */
     public Fragment(Node start) {
         this.start = start;
         this.pointers = new HashSet<>();
@@ -19,6 +25,9 @@ public class Fragment {
         this.start = start;
     }
 
+    /**
+     * @return outgoing edges of a fragment
+     */ 
     public HashSet<Transition> getPointers() {
         return pointers;
     }
@@ -26,13 +35,20 @@ public class Fragment {
     public void setPointers(HashSet<Transition> pointers) {
         this.pointers = pointers;
     }
+    
+    public void addPointer(char c) {
+        this.pointers.add(new Transition(this.start, c));
+    }
 
-    public HashSet<Transition> merge(Fragment first, Fragment second) {
-        HashSet<Transition> newPointers = second.getPointers();
-        for (Transition trans : first.getPointers()) {
-            newPointers.add(trans);
-        }   
-        return newPointers;
+    /**
+     * Merges the pointers list of a fragment with the pointers
+     * list of another fragment
+     * @param other node
+     */
+    public void merge(Fragment other) {
+        for (Transition trans : other.getPointers()) {
+            this.pointers.add(trans);
+        }    
     }
            
     @Override

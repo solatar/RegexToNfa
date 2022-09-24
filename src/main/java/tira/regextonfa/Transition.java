@@ -1,9 +1,9 @@
 package tira.regextonfa;
 
 public class Transition {
-    public Node x;
-    public Node y;
-    public char value;
+    Node x;
+    Node y;
+    char value;
 
     public Transition(Node x, char value) {
         this.x = x;
