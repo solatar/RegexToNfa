@@ -103,5 +103,4 @@ public class Nfa {
     public char[][] getGraph() {
         return graph;
     }
-
 }
