@@ -35,7 +35,7 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.3</version>
+                <version>0.0.8</version>
                 <configuration>
                     <mainClass>tira.regextonfa.RegexToNfa</mainClass>
                 </configuration>
@@ -70,7 +70,8 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                  <additionalparam>-Xdoclint:none</additionalparam>  <!-- Turnoff all checks -->
+                  <additionalparam>-Xdoclint:none</additionalparam> 
+                  <source>8</source>                 
                 </configuration>
                 <executions>
                     <execution>

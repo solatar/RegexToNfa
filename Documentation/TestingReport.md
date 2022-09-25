@@ -17,4 +17,4 @@ User interface is excluded from automatic tests.
 
 So far, the application has not been tested on any other than a Linux device.
 
-![Jacoco didn't pick up Nfa.java for this report](Pictures/Coverage240922.png)
+![Jacoco report ](Pictures/Coverage250922.png)

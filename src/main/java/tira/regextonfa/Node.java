@@ -7,7 +7,7 @@ public class Node {
     public HashSet<Transition> edges;
 
     /**
-     * An NFA parsed from a regex of length n will have n+1 nodes.
+     * An NFA parsed from a regex of length n will have maximum n+1 nodes.
      * The last one is the matching state, n+1. Other nodes will be
      * named with an integer between 0...n
      * @param name 

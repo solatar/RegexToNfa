@@ -3,7 +3,9 @@
 This week I included Javadoc and Checkstyle into the project,created testing report, added
 comments and tried to improve the test coverage.
 
-Javadoc has caused massive headache and waste of time.
+Javadoc generation caused a lot of headache and waste of time. The workaround was to add <source>8</source>
+into Javadoc Maven plugin. I also learned I need to add a new Main class because Java 11 with JavaFX
+won't generate a runnable jar otherwise.
 
 The constructNfa() method now returns an automaton as a two-dimensional graph. Next step is to
 perform a depth-first search with the string that is going to be tested. The graph becomes very sparse;

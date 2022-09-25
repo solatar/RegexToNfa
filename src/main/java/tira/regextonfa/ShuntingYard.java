@@ -12,7 +12,7 @@ public class ShuntingYard {
         return true;
     }    
     /**
-     * @param char
+     * @param ch
      * @return an Integer value representing the precedence
      * of an operator in a regular expression
      */   
