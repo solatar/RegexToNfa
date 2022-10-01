@@ -29,18 +29,29 @@ public class RegexToNfa extends Application {
         window.add(new Label ("Enter string you want to test:"),0,1); 
         TextField stringToTest = new TextField();
         window.add(stringToTest,1,1);                       
-        Button button = new Button("Convert"); window.add(button,1,2);
+        Button button = new Button("Check"); window.add(button,1,2);
         window.setAlignment(Pos.BASELINE_CENTER);
         TextField postfix = new TextField();
         window.add(new Label("Postfix notation:"),0,3); 
         window.add(postfix,1,3);
+        TextField warning = new TextField();
+        window.add(warning, 1, 4);
+        TextField result = new TextField();
+        window.add(new Label("This string belongs to language :"),0,5); 
+        window.add(result, 1, 5);
         button.setOnAction(e -> {
             String newRegex = String.valueOf(regex.getText()).trim();
             String newString = String.valueOf(stringToTest.getText());
+            if (newRegex.isBlank() || newString.isBlank()) {
+                warning.setText("Values cannot be empty");
+            } else {
             String newPostfix = shunting.infixToPostfix(newRegex);
             postfix.setText(newPostfix);
             Nfa nfa = new Nfa(newPostfix);
             nfa.constructNfa();
+            Boolean test = nfa.simulate(newString);
+            result.setText(Boolean.toString(test));                
+            }    
         });
         myStage.setScene(myScene);
         myStage.show();   
