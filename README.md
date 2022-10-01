@@ -24,3 +24,5 @@ mvn exec:java -Dexec.mainClass=tira.regextonfa.RegexToNfa
 [Week 2](https://github.com/solatar/RegexToNfa/blob/master/Documentation/2WeeklyReport.md)
 
 [Week 3](https://github.com/solatar/RegexToNfa/blob/master/Documentation/3WeeklyReport.md)
+
+[Week 4](https://github.com/solatar/RegexToNfa/blob/master/Documentation/4WeeklyReport.md)
