@@ -34,7 +34,6 @@ public class Nfa {
         Character e = 'e';
         nodeName = 0;
         for (int i = 0; i < n; i++) {
-            System.out.println(stack);
             char current = regex.charAt(i);     
             //a single character creates a starting node and an outgoing edge to null.
             if (Character.isLetterOrDigit(current)) { 
