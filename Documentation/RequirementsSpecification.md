@@ -28,7 +28,7 @@ to postfix notation using Shunting-Yard algorithm. I plan to use  Thompson's con
 
 I selected this topic because regular expressions have so many practical applications and I wanted to understand them better. 
 The time complexity of Shunting-Yard algorithm is *O(n)*, linear to the length of the regular expression. Thompson's algorithm is able to process a regex of length *m*
-in *O(m^2^) time and simulating it with a string of length on *n* will take *O(mn) time.
+in *O(m^2^)* time and simulating it with a string of length on *n* will take *O(mn)* time.
 
 ### References ###
 

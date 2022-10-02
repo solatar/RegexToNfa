@@ -34,7 +34,9 @@ public class RegexToNfa extends Application {
         TextField postfix = new TextField();
         window.add(new Label("Postfix notation:"),0,3); 
         window.add(postfix,1,3);
+        window.add(new Label("Warnings:"),0,4); 
         TextField warning = new TextField();
+        warning.setMinWidth(400);
         window.add(warning, 1, 4);
         TextField result = new TextField();
         window.add(new Label("This string belongs to language :"),0,5); 
@@ -45,17 +47,23 @@ public class RegexToNfa extends Application {
             if (newRegex.isBlank() || newString.isBlank()) {
                 warning.setText("Values cannot be empty");
             } else {
-            String newPostfix = shunting.infixToPostfix(newRegex);
-            postfix.setText(newPostfix);
-            Nfa nfa = new Nfa(newPostfix);
-            nfa.constructNfa();
-            Boolean test = nfa.simulate(newString);
-            result.setText(Boolean.toString(test));                
+                String newPostfix = shunting.infixToPostfix(newRegex);
+                postfix.setText(newPostfix);
+                Nfa nfa = new Nfa(newPostfix);
+                nfa.constructNfa();
+                if (!nfa.getStack().isEmpty()) {
+                    warning.setText("Check for missing concatenation symbols in your regex");
+                } else {
+                    Boolean test = nfa.simulate(newString);
+                    result.setText(Boolean.toString(test));                  
+                }
             }    
-        });
+        });  
         myStage.setScene(myScene);
         myStage.show();   
     }    
+    
+
 
     public static void main(String[] args) {
         launch(args);

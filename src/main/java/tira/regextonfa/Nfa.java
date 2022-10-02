@@ -1,6 +1,7 @@
 package tira.regextonfa;
 
 import java.util.Stack;
+import javafx.scene.control.TextField;
 
 public class Nfa {
     String regex;
@@ -9,6 +10,7 @@ public class Nfa {
     int start;
     int goal;
     int nodeName;
+    Stack<Fragment> stack;
 
     public Nfa(String regex) {
         this.regex = regex;
@@ -27,11 +29,12 @@ public class Nfa {
      * @return a two-dimensional array. Character in [x][y] means
      * an edge from node x to node y labeled with that character.
      */
-    public char[][] constructNfa() {
-        Stack<Fragment> stack = new Stack<>();
+    public void constructNfa() {
+        stack = new Stack<>();
         Character e = 'e';
         nodeName = 0;
         for (int i = 0; i < n; i++) {
+            System.out.println(stack);
             char current = regex.charAt(i);     
             //a single character creates a starting node and an outgoing edge to null.
             if (Character.isLetterOrDigit(current)) { 
@@ -91,7 +94,6 @@ public class Nfa {
                 stack.push(closure);         
                 nodeName++;
             }
-            System.out.println(stack);
         }    
         //When the regex has been handled, an accepting state is created and
         //final pointers connected to it. The final fragment is popped but it 
@@ -114,7 +116,6 @@ public class Nfa {
                 System.out.print(graph[j][i]);         
                 System.out.println();
         }        
-        return graph;
     } 
     
     /**
@@ -126,14 +127,14 @@ public class Nfa {
      * @param candidate
      * @return match or not
      */
-    boolean simulate(String candidate) {
+    public boolean simulate(String candidate) {
         int l = candidate.length();
-        Stack<Integer> clist = new Stack<>();
-        clist.push(start);
+        Stack<Integer> nodeList = new Stack<>();
+        nodeList.push(start);
         int i = 0;
-        while (!clist.isEmpty()) {
-            System.out.println(clist);
-            int current = clist.pop();
+        while (!nodeList.isEmpty()) {
+            System.out.println(nodeList);
+            int current = nodeList.pop();
             if (i == l && current == goal) {
                 return true;
             }
@@ -142,16 +143,16 @@ public class Nfa {
                 if (i == l && (graph[current][j] == 'e') && j == goal) {
                     return true;
                 } else if (graph[current][j] == 'e') {
-                    clist.push(j);
+                    nodeList.push(j);
                 } else if (i < l && graph[current][j] == candidate.charAt(i)) {
-                    clist.push(j);
+                    nodeList.push(j);
                     i++;
                 }      
             }
         }      
         return false;
     }
-    
+
 
     public String getRegex() {
         return regex;
@@ -160,4 +161,29 @@ public class Nfa {
     public char[][] getGraph() {
         return graph;
     }
+
+    public int getStart() {
+        return start;
+    }
+
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    public int getGoal() {
+        return goal;
+    }
+
+    public void setGoal(int goal) {
+        this.goal = goal;
+    }
+
+    public Stack<Fragment> getStack() {
+        return stack;
+    }
+
+    public void setStack(Stack<Fragment> stack) {
+        this.stack = stack;
+    }
+
 }
