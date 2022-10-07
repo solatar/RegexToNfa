@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -23,8 +22,7 @@ public class RegexToNfa extends Application {
         window.setVgap(5);
         window.setAlignment(Pos.CENTER);
         Scene myScene = new Scene(window, 1000, 500 );
-        window.add( new Label("Enter regular expression with concatenation "
-                + "operator '.':"), 0,0); 
+        window.add( new Label("Enter regular expression:"), 0,0); 
         TextField regex = new TextField();
         window.add(regex, 1, 0);
         window.add(new Label ("Enter string you want to test:"),0,1); 
@@ -48,7 +46,9 @@ public class RegexToNfa extends Application {
             if (newRegex.isBlank() || newString.isBlank()) {
                 warning.setText("Values cannot be empty");
             } else {
-                String newPostfix = shunting.infixToPostfix(newRegex);
+                shunting.setRegex(newRegex);
+                shunting.addConcatSymbols();
+                String newPostfix = shunting.infixToPostfix();
                 postfix.setText(newPostfix);
                 Nfa nfa = new Nfa(newPostfix);
                 nfa.constructNfa();
@@ -63,7 +63,6 @@ public class RegexToNfa extends Application {
         myStage.setScene(myScene);
         myStage.show();   
     }       
-
 
     public static void main(String[] args) {
         launch(args);

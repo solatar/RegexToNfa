@@ -182,5 +182,4 @@ public class Nfa {
     public void setStack(Stack<Fragment> stack) {
         this.stack = stack;
     }
-
 }

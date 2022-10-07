@@ -15,14 +15,23 @@ public class ShuntingYardTest {
     }    
     
     @Test
+    public void concatSymbolsAreAdded() {
+        sy.setRegex("(a|b|c)*abc");
+        sy.addConcatSymbols();
+        assertEquals("(a|b|c)*.a.b.c", sy.getRegex());
+    }
+    
+    @Test
     public void invalidRegexesAreHandled() {
-        String result = sy.infixToPostfix("(a+b)*(c+d");
+        sy.setRegex("(a+b)*(c+d");
+        String result = sy.infixToPostfix();
         assertEquals("This expression is invalid", result);
     }    
     
     @Test
     public void postFixIsReturned() {
-        String result = sy.infixToPostfix("(a+b)*(c+d)");
+        sy.setRegex("(a+b)*(c+d)");
+        String result = sy.infixToPostfix();
         assertEquals("ab+cd+*", result);  
     }
     

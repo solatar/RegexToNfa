@@ -1,9 +1,31 @@
-
 package regextonfa.main;
 
 import java.util.Stack;
 
 public class ShuntingYard {   
+    String regex;    
+    
+    /**
+     * Adds character '.' between concatenated characters or groups of 
+     * characters
+     */
+    public void addConcatSymbols() {
+        String output = new String("");
+        int l = regex.length();
+        for (int i = 0; i < l-1; i++) {
+            char c = regex.charAt(i);
+            char c2 = regex.charAt(i+1);
+            output += c;
+            if (letterOrDigit(c) && letterOrDigit(c2)) {
+                output += '.';
+            }
+            else if ((c == ')' || c == '*') && letterOrDigit(c2)) {
+                output += '.';
+            }
+        }
+        output += regex.charAt(l-1);
+        regex = output;
+    }
 
     public boolean letterOrDigit(char c) {
 	if (!Character.isLetterOrDigit(c)) {
@@ -47,7 +69,7 @@ public class ShuntingYard {
      * Converts a regex from infix to postfix     * 
      * @param expression
      */
-    public String infixToPostfix(String expression){
+    public String infixToPostfix(){
         // Initialising an empty String
         // (for output) and an empty stack
         Stack<Character> stack = new Stack<>();
@@ -55,9 +77,9 @@ public class ShuntingYard {
         String output = new String("");
             // Iterating over tokens using inbuilt
             // .length() function
-        for (int i = 0; i < expression.length(); ++i) {
+        for (int i = 0; i < regex.length(); ++i) {
             // Finding character at 'i'th index
-            char c = expression.charAt(i);
+            char c = regex.charAt(i);
             // If the scanned Token is an
             // operand, add it to output
             if (letterOrDigit(c)) {
@@ -101,8 +123,16 @@ public class ShuntingYard {
             if (stack.peek() == '(') {
                 return "This expression is invalid";
             }
-                output += stack.pop();
-            }          
+            output += stack.pop();
+        }          
         return output;
     }
+
+    public String getRegex() {
+        return regex;
+    }
+
+    public void setRegex(String regex) {
+        this.regex = regex;
+    }    
 }
