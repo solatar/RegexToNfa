@@ -1,4 +1,4 @@
-module tira.regextonfa {
+module regextonfa.main {
     requires javafx.controls;
-    exports tira.regextonfa;
+    exports regextonfa.main;
 }

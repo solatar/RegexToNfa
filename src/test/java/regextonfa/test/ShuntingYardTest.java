@@ -1,9 +1,9 @@
+package regextonfa.test;
 
-import tira.regextonfa.ShuntingYard;
+import regextonfa.main.ShuntingYard;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
 
 public class ShuntingYardTest {
     

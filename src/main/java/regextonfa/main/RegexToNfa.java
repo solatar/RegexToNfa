@@ -1,4 +1,4 @@
-package tira.regextonfa;
+package regextonfa.main;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -21,7 +22,7 @@ public class RegexToNfa extends Application {
         window.setHgap(5);
         window.setVgap(5);
         window.setAlignment(Pos.CENTER);
-        Scene myScene = new Scene(window, 800, 500 );
+        Scene myScene = new Scene(window, 1000, 500 );
         window.add( new Label("Enter regular expression with concatenation "
                 + "operator '.':"), 0,0); 
         TextField regex = new TextField();
@@ -61,8 +62,7 @@ public class RegexToNfa extends Application {
         });  
         myStage.setScene(myScene);
         myStage.show();   
-    }    
-    
+    }       
 
 
     public static void main(String[] args) {

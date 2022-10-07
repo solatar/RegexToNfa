@@ -1,4 +1,4 @@
-package tira.regextonfa;
+package regextonfa.main;
 
 import java.util.Stack;
 import javafx.scene.control.TextField;
@@ -132,13 +132,11 @@ public class Nfa {
         nodeList.push(start);
         int i = 0;
         while (!nodeList.isEmpty()) {
-            System.out.println(nodeList);
             int current = nodeList.pop();
             if (i == l && current == goal) {
                 return true;
             }
             for (int j = 0; j <= nodeName; j++) {
-                System.out.println(graph[current][j]);
                 if (i == l && (graph[current][j] == 'e') && j == goal) {
                     return true;
                 } else if (graph[current][j] == 'e') {

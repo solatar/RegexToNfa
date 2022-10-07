@@ -1,4 +1,4 @@
-package tira.regextonfa;
+package regextonfa.main;
 
 public class Transition {
     Node x;

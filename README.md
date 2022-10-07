@@ -14,7 +14,7 @@ entered with symbol '.' between concatenated characters. For example, (a|b|c)\*a
 Run the app from command line:
 
 ```
-mvn exec:java -Dexec.mainClass=tira.regextonfa.RegexToNfa
+mvn exec:java -Dexec.mainClass=regextonfa.main.Main
 ```
 
 ### Weekly progress ###

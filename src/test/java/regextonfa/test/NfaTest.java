@@ -1,9 +1,10 @@
+package regextonfa.test;
 
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import tira.regextonfa.Nfa;
-import tira.regextonfa.ShuntingYard;
+import regextonfa.main.Nfa;
+import regextonfa.main.ShuntingYard;
 
 public class NfaTest {
     

@@ -1,5 +1,5 @@
 
-package tira.regextonfa;
+package regextonfa.main;
 
 import java.util.Stack;
 

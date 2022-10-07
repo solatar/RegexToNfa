@@ -1,11 +1,12 @@
+package regextonfa.test;
 
 import java.util.HashSet;
-import tira.regextonfa.Fragment;
+import regextonfa.main.Fragment;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import tira.regextonfa.Node;
-import tira.regextonfa.Transition;
+import regextonfa.main.Node;
+import regextonfa.main.Transition;
 
 
 public class FragmentTest {

@@ -21,6 +21,11 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>3.2.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -37,7 +42,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>tira.regextonfa.RegexToNfa</mainClass>
+                    <mainClass>regextonfa.main.Main</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -84,17 +89,17 @@
             </plugin>                        
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-jxr-plugin</artifactId>
-              <version>2.5</version>
+              <artifactId>maven-checkstyle-plugin</artifactId>
+              <version>2.17</version>
+              <configuration>
+                <excludes>**/module-info.java</excludes>     
+                <configLocation>checkstyle.xml</configLocation>
+              </configuration>
             </plugin>
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-checkstyle-plugin</artifactId>
-              <version>3.4.0</version>
-                <configuration>
-                  <excludes>**/module-info.java</excludes>  
-                  <configLocation>checkstyle.xml</configLocation>
-                </configuration>
+              <artifactId>maven-jxr-plugin</artifactId>
+              <version>2.5</version>
             </plugin>
         </plugins>
     </build>
