@@ -30,3 +30,5 @@ mvn exec:java -Dexec.mainClass=regextonfa.main.Main
 [Week 3](https://github.com/solatar/RegexToNfa/blob/master/Documentation/3WeeklyReport.md)
 
 [Week 4](https://github.com/solatar/RegexToNfa/blob/master/Documentation/4WeeklyReport.md)
+
+[Week 5](https://github.com/solatar/RegexToNfa/blob/master/Documentation/5WeeklyReport.md)
