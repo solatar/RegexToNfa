@@ -35,6 +35,6 @@ public class Node {
 
     @Override
     public String toString() {
-        return "Node: " +this.name;
+        return "Node: " + this.name;
     }    
 }

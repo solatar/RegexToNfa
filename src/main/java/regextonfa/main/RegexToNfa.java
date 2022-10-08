@@ -22,30 +22,33 @@ public class RegexToNfa extends Application {
         window.setVgap(5);
         window.setAlignment(Pos.CENTER);
         Scene myScene = new Scene(window, 1000, 500 );
-        window.add( new Label("Enter regular expression:"), 0,0); 
+        window.add( new Label("Enter regular expression:"), 0, 0); 
         TextField regex = new TextField();
         window.add(regex, 1, 0);
-        window.add(new Label ("Enter string you want to test:"),0,1); 
+        window.add(new Label ("Enter string you want to test:"), 0, 1); 
         TextField stringToTest = new TextField();
         window.add(stringToTest,1,1);                       
-        Button button = new Button("Check"); window.add(button,1,2);
+        Button button = new Button("Check"); window.add(button, 1, 2);
         window.setAlignment(Pos.BASELINE_CENTER);
         TextField postfix = new TextField();
-        window.add(new Label("Postfix notation:"),0,3); 
-        window.add(postfix,1,3);
-        window.add(new Label("Warnings:"),0,4); 
+        window.add(new Label("Postfix notation:"),0, 3); 
+        window.add(postfix, 1, 3);
+        window.add(new Label("Warnings:"), 0, 4); 
         TextField warning = new TextField();
         warning.setMinWidth(400);
         window.add(warning, 1, 4);
         TextField result = new TextField();
-        window.add(new Label("This string belongs to language :"),0,5); 
+        window.add(new Label("This string belongs to language :"), 0, 5); 
         window.add(result, 1, 5);
         button.setOnAction(e -> {
+            warning.clear();
+            result.clear();
             String newRegex = String.valueOf(regex.getText()).trim();
             String newString = String.valueOf(stringToTest.getText());
             if (newRegex.isBlank() || newString.isBlank()) {
                 warning.setText("Values cannot be empty");
             } else {
+                newRegex = newRegex.replaceAll("\\s+","");
                 shunting.setRegex(newRegex);
                 shunting.addConcatSymbols();
                 String newPostfix = shunting.infixToPostfix();

@@ -18,8 +18,9 @@ public class ShuntingYard {
             output += c;
             if (letterOrDigit(c) && letterOrDigit(c2)) {
                 output += '.';
-            }
-            else if ((c == ')' || c == '*') && letterOrDigit(c2)) {
+            } else if ((c == ')' || c == '*') && letterOrDigit(c2)) {
+                output += '.';
+            } else if (c == '*' && c2 == '(') {
                 output += '.';
             }
         }
@@ -41,14 +42,11 @@ public class ShuntingYard {
     public int getPrecedence(char ch)	{
 	if (ch == '.') {
             return 1;
-        }
-        else if (ch == '|') {
+        } else if (ch == '|') {
             return 2;
-        } 
-        else if (ch == '*') {
+        } else if (ch == '*') {
             return 3;
-        }
-        else  return -1;               
+        } else  return -1;               
     }
 
     /**

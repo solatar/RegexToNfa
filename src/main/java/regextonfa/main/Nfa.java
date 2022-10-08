@@ -16,8 +16,8 @@ public class Nfa {
         this.regex = regex;
         n = regex.length();
         graph = new char[n+1][n+1];
-        for (int i=0; i<n+1; i++) {
-            for (int j=0; j<n+1; j++) {
+        for (int i = 0; i < n+1; i++) {
+            for (int j=0; j < n+1; j++) {
                 graph[i][j] = '#';
             }
         }
@@ -110,8 +110,8 @@ public class Nfa {
         start = automaton.getStart().getName();
         goal = nodeName;
         //The graph contains all edges of the NFA.
-        for (int i=0; i<n+1; i++) {
-            for (int j=0; j<n+1; j++)
+        for (int i=0; i < n+1; i++) {
+            for (int j=0; j < n+1; j++)
                 System.out.print(graph[j][i]);         
                 System.out.println();
         }        

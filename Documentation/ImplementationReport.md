@@ -1,8 +1,14 @@
 ## Implementation report ##
 
-The application has a graphic user interface implemented with JavaFx, and five other classes.
+The application has a graphic user interface implemented with JavaFx, a main class and five other classes.
 
-The main algorithm consists of two parts:
+User enters a regular expression and a string to test against it. The regex is manipulated by two methods to
+enable building an automaton. First, the regex is checked for the need for concatenation symbols. This takes
+*O(n)* time where *n* is the length of the regex. Second, the regex is transformed into postfix notation with
+Shunting-Yard algorithm. This method uses stack and its worst-case time complexity and space complexity are
+*O(n)*.  
+
+The automata algorithm consists of two parts:
 
 1) construction of a non-deterministic finite automaton
 

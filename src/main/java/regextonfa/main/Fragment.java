@@ -53,6 +53,6 @@ public class Fragment {
            
     @Override
     public String toString() {
-        return "Starting node: " +this.start+ ", pointers: " +this.pointers;
+        return "Starting node: " + this.start + ", pointers: " + this.pointers;
     }
 }

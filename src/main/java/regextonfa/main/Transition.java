@@ -42,6 +42,6 @@ public class Transition {
 
     @Override
     public String toString() {
-        return "char " +this.value+ " from " +this.x+ " to " +this.y;
+        return "char " + this.value + " from " + this.x + " to " + this.y;
     }
 }
