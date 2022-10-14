@@ -22,6 +22,8 @@ public class ShuntingYard {
                 output += '.';
             } else if (c == '*' && c2 == '(') {
                 output += '.';
+            } else if (letterOrDigit(c) && c2 == '(') {
+                output += '.';
             }
         }
         output += regex.charAt(l-1);

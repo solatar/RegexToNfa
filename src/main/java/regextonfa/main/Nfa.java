@@ -1,5 +1,6 @@
 package regextonfa.main;
 
+import java.util.HashSet;
 import java.util.Stack;
 import javafx.scene.control.TextField;
 
@@ -23,7 +24,7 @@ public class Nfa {
         }
     }   
     /**
-     * Constructs a non-finite automata representing the regular 
+     * Constructs a non-finite automaton representing the regular 
      * expression that the Nfa object has as a parameter. The method
      * is based on Thompson's construction algorithm.
      * @return a two-dimensional array. Character in [x][y] means
@@ -110,8 +111,8 @@ public class Nfa {
         start = automaton.getStart().getName();
         goal = nodeName;
         //The graph contains all edges of the NFA.
-        for (int i=0; i < n+1; i++) {
-            for (int j=0; j < n+1; j++)
+        for (int i=0; i < n-1; i++) {
+            for (int j=0; j < n-1; j++)
                 System.out.print(graph[j][i]);         
                 System.out.println();
         }        
@@ -128,29 +129,50 @@ public class Nfa {
      */
     public boolean simulate(String candidate) {
         int l = candidate.length();
-        Stack<Integer> nodeList = new Stack<>();
-        nodeList.push(start);
+        Stack<Integer> currentList = new Stack<>();
+        Stack<Integer> nextList = new Stack<>();
+        boolean encountered = false;
+        HashSet<Integer> added = new HashSet<>();
+        currentList.add(start);
         int i = 0;
-        while (!nodeList.isEmpty()) {
-            int current = nodeList.pop();
-            if (i == l && current == goal) {
-                return true;
-            }
-            for (int j = 0; j <= nodeName; j++) {
-                if (i == l && (graph[current][j] == 'e') && j == goal) {
+        while (i < l) {
+            while (!currentList.isEmpty()) {
+                int current = currentList.pop();
+                if (i == l-1 && current == goal) {
                     return true;
-                } else if (graph[current][j] == 'e') {
-                    nodeList.push(j);
-                } else if (i < l && graph[current][j] == candidate.charAt(i)) {
-                    nodeList.push(j);
-                    i++;
-                }      
-            }
-        }      
+                } else  {
+                    for (int j = 0; j <= nodeName; j++) {
+                        if (i == l-1 && (graph[current][j] == candidate.charAt(i)) && j == goal) {
+                            return true;
+                        }
+                        if (graph[current][j] == 'e') {
+                            if (!added.contains(j)) {
+                                added.add(j);
+                                nextList.add(j);
+                                currentList.add(j);
+                            }
+                        }                          
+                        if (graph[current][j] == candidate.charAt(i)) {
+                            encountered = true;
+                            if (!added.contains(j)) {
+                                added.add(j);
+                                nextList.add(j);
+                                currentList.add(j);
+                            }
+                        }      
+                    } 
+                }                  
+            } 
+            added.clear();
+            if (encountered) i++;
+            Stack<Integer> temp = new Stack<>();
+            currentList = nextList;
+            nextList = temp;          
+        }
         return false;
     }
-
-
+    
+    
     public String getRegex() {
         return regex;
     }
