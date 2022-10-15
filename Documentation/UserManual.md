@@ -3,7 +3,7 @@
 RegexToNfa application has a graphic user interface that requires you have JavaFx components installed
 and the installation path added to VM options. For example, in Netbeans:
 
-![VM options](Pitures/VMoptions.png)
+![VM options](Pictures/VMoptions.png)
 
 On command line:
 
@@ -31,5 +31,5 @@ will not match *a*. The supported operations are  | for alternation, . for conca
 (zero or more). It does not (yet) support operations ? (zero or one) or + (one or more). Unsupported 
 characters will produce an error:
 
-![Illegal characters](illegal.png)
+![Illegal characters](Pictures/illegal.png)
 
