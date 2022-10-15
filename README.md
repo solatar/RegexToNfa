@@ -4,22 +4,14 @@ University course project on Data Structures and Algorithms.
 
 The app takes a regular expression and a string as input, builds an NFA fron the regex and checks whether it accepts the string.
 
-JavaFx requires you have JavaFx SDK installed and VM options pointing to its location. For example in Netbeans: Project Properties -> Run ->
-VM Options -> --module-path "/home/**username**/javafx-sdk-18.0.1/lib" --add-modules javafx.base,javafx.controls,javafx.fxml,javafx.graphics
--> OK
-
 The application uses Shunting-Yard and Thompson's construction algorithms. Due to the nature of the latter, the app adds character '.' between
 concatenated characters. For example, (a|b|c)\*abc becomes (a|b|c)\*.a.b.c. User may enter their regex in regular form. Parentheses are used
 for grouping characters but they are dropped when regex is converted into postfix form.
 
-Currently the app supports these regular expression operations: | for alternation/union, . for concatenation and * for closure (zero or more).
+Currently the app supports these regular expression operations: | for alternation, . for concatenation and * for closure (zero or more).
 It does not (yet) support operations ? (zero or one) or + (one or more). 
 
-Run the app from command line:
-
-```
-mvn exec:java -Dexec.mainClass=regextonfa.main.Main
-```
+[User Manual](https://github.com/solatar/RegexToNfa/blob/master/Documentation/UserManual.md)
 
 ### Weekly progress ###
 
@@ -32,3 +24,5 @@ mvn exec:java -Dexec.mainClass=regextonfa.main.Main
 [Week 4](https://github.com/solatar/RegexToNfa/blob/master/Documentation/4WeeklyReport.md)
 
 [Week 5](https://github.com/solatar/RegexToNfa/blob/master/Documentation/5WeeklyReport.md)
+
+[Week 6](https://github.com/solatar/RegexToNfa/blob/master/Documentation/6WeeklyReport.md)
