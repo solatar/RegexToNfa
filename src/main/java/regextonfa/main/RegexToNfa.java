@@ -56,7 +56,7 @@ public class RegexToNfa extends Application {
                 Nfa nfa = new Nfa(newPostfix);
                 nfa.constructNfa();
                 if (!nfa.getStack().isEmpty()) {
-                    warning.setText("Check for missing concatenation symbols in your regex");
+                    warning.setText("Please check for illegal characters in your regex");
                 } else {
                     Boolean test = nfa.simulate(newString);
                     result.setText(Boolean.toString(test));                  

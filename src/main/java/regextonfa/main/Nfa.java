@@ -2,7 +2,6 @@ package regextonfa.main;
 
 import java.util.HashSet;
 import java.util.Stack;
-import javafx.scene.control.TextField;
 
 public class Nfa {
     String regex;
@@ -117,6 +116,7 @@ public class Nfa {
                 System.out.println();
         }        
     } 
+    //Simulate method is not yet functioning in all cases.
     
     /**
      * Simulates the NFA with the given string. If a node has only e-transitions
@@ -145,21 +145,15 @@ public class Nfa {
                         if (i == l-1 && (graph[current][j] == candidate.charAt(i)) && j == goal) {
                             return true;
                         }
-                        if (graph[current][j] == 'e') {
+                        if (graph[current][j] == 'e' || graph[current][j] == candidate.charAt(i)) {
                             if (!added.contains(j)) {
                                 added.add(j);
                                 nextList.add(j);
                                 currentList.add(j);
+                            } if (graph[current][j] == candidate.charAt(i)) {
+                                encountered = true;
                             }
                         }                          
-                        if (graph[current][j] == candidate.charAt(i)) {
-                            encountered = true;
-                            if (!added.contains(j)) {
-                                added.add(j);
-                                nextList.add(j);
-                                currentList.add(j);
-                            }
-                        }      
                     } 
                 }                  
             } 
