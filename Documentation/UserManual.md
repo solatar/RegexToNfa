@@ -27,9 +27,13 @@ mvn package
 ### General use ###
 
 The application supports regular expressions consisting of letters and digits. It is case-sensitive, so *A* 
-will not match *a*. The supported operations are  | for alternation, . for concatenation and * for closure
-(zero or more). It does not (yet) support operations ? (zero or one) or + (one or more). Unsupported 
+will not match *a*. The supported operations are  | for alternation, . for concatenation, * for closure
+(zero or more) and + for one or more. It does not (yet) support operation ? (zero or one). Unsupported 
 characters will produce an error:
 
 ![Illegal characters](Pictures/illegal.png)
+
+In this application alternation has precedence over concatenation. For example, aba|baba* means that *a* and
+*b* are alternated. Use parentheses if you want to alternate concatenated characters, such as (aba)|(baba)*
+
 

@@ -46,7 +46,7 @@ public class ShuntingYard {
             return 1;
         } else if (ch == '|') {
             return 2;
-        } else if (ch == '*') {
+        } else if (ch == '*' || ch == '+') {
             return 3;
         } else  return -1;               
     }
@@ -97,7 +97,6 @@ public class ShuntingYard {
                 while (!stack.isEmpty() 
                     && stack.peek() != '(') {
                     char next = stack.pop();
-                    System.out.println(next);
                     output += next;     
                 }
                 stack.pop();

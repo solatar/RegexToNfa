@@ -93,6 +93,21 @@ public class Nfa {
                 stack.push(closure);         
                 nodeName++;
             }
+            if (current == '+') {
+                Fragment oneOrMore = stack.pop();
+                Node newEnd = new Node (nodeName);
+                for (Transition trans : oneOrMore.pointers) {
+                    trans.setY(newEnd);
+                    char c = trans.getValue();
+                    graph[trans.getX().getName()][nodeName] = c;
+                }
+                graph[nodeName][oneOrMore.getStart().getName()] = e;
+                Transition trans = new Transition(newEnd, e);
+                oneOrMore.pointers.clear();
+                oneOrMore.pointers.add(trans);
+                stack.push(oneOrMore);
+                nodeName++;
+            }
         }    
         //When the regex has been handled, an accepting state is created and
         //final pointers connected to it. The final fragment is popped but it 
@@ -110,13 +125,12 @@ public class Nfa {
         start = automaton.getStart().getName();
         goal = nodeName;
         //The graph contains all edges of the NFA.
-        for (int i=0; i < n-1; i++) {
-            for (int j=0; j < n-1; j++)
+        for (int i=0; i < n; i++) {
+            for (int j=0; j < n; j++)
                 System.out.print(graph[j][i]);         
                 System.out.println();
         }        
     } 
-    //Simulate method is not yet functioning in all cases.
     
     /**
      * Simulates the NFA with the given string. If a node has only e-transitions
@@ -131,38 +145,40 @@ public class Nfa {
         int l = candidate.length();
         Stack<Integer> currentList = new Stack<>();
         Stack<Integer> nextList = new Stack<>();
-        boolean encountered = false;
-        HashSet<Integer> added = new HashSet<>();
         currentList.add(start);
         int i = 0;
-        while (i < l) {
+        while (i < l ) {
+            char ch = candidate.charAt(i);
             while (!currentList.isEmpty()) {
-                int current = currentList.pop();
-                if (i == l-1 && current == goal) {
-                    return true;
-                } else  {
-                    for (int j = 0; j <= nodeName; j++) {
-                        if (i == l-1 && (graph[current][j] == candidate.charAt(i)) && j == goal) {
-                            return true;
-                        }
-                        if (graph[current][j] == 'e' || graph[current][j] == candidate.charAt(i)) {
-                            if (!added.contains(j)) {
-                                added.add(j);
-                                nextList.add(j);
-                                currentList.add(j);
-                            } if (graph[current][j] == candidate.charAt(i)) {
-                                encountered = true;
-                            }
-                        }                          
-                    } 
-                }                  
-            } 
-            added.clear();
-            if (encountered) i++;
-            Stack<Integer> temp = new Stack<>();
-            currentList = nextList;
-            nextList = temp;          
-        }
+            int current = currentList.pop();
+            if (i == l-1 && current == goal) {
+                return true;
+            } else  {
+                for (int j = 0; j <= nodeName; j++) {
+                    if (i == l-1 && (graph[current][j] == ch) && j == goal) {
+                        return true;
+                    } else if (graph[current][j] == 'e') {
+                        if (!currentList.contains(j)) currentList.add(j);
+                        if (!nextList.contains(j)) nextList.add(j);
+                        
+                    } else if (graph[current][j] == ch) {
+                        if  (!currentList.contains(j)) currentList.add(j);                                         
+                        if (!nextList.contains(j)) nextList.add(j);
+                        ch = '@';
+                    } else continue;
+                }                 
+                if (ch == candidate.charAt(i) && currentList.isEmpty()) {
+                    return false;
+                }
+            }               
+        }               
+        if (ch == '@' && i < l - 1) {
+            i++;
+        }            
+        Stack<Integer> temp = new Stack<>();
+        currentList = nextList;
+        nextList = temp;             
+        } 
         return false;
     }
     
