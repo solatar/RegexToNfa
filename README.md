@@ -9,9 +9,16 @@ concatenated characters. For example, (a|b|c)\*abc becomes (a|b|c)\*.a.b.c. User
 for grouping characters but they are dropped when regex is converted into postfix form.
 
 Currently the app supports these regular expression operations: | for alternation, . for concatenation * for closure (zero or more) and
-+ for one or more. 
+/+ for one or more. 
+
+[Requirements specification](https://github.com/solatar/RegexToNfa/blob/master/Documentation/RequirementsSpecification.md)
 
 [User Manual](https://github.com/solatar/RegexToNfa/blob/master/Documentation/UserManual.md)
+
+[Implementation report](https://github.com/solatar/RegexToNfa/blob/master/Documentation/ImplementationReport.md)
+
+[Testing report](https://github.com/solatar/RegexToNfa/blob/master/Documentation/TestingReport.md)
+
 
 ### Weekly progress ###
 
