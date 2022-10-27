@@ -8,7 +8,7 @@ The application uses Shunting-Yard and Thompson's construction algorithms. Due t
 concatenated characters. For example, (a|b|c)\*abc becomes (a|b|c)\*.a.b.c. User may enter their regex in regular form. Parentheses are used
 for grouping characters but they are dropped when regex is converted into postfix form.
 
-Currently the app supports these regular expression operations (in the order of precedence): . for concatenation, | for alternation * for closure (zero or more) and /+ for one or more. 
+Currently the app supports these regular expression operations (in the order of precedence): . for concatenation, | for alternation * for closure (zero or more) and \+ for one or more. 
 
 [Requirements specification](https://github.com/solatar/RegexToNfa/blob/master/Documentation/RequirementsSpecification.md)
 
