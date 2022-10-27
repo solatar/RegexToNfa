@@ -49,10 +49,19 @@ public class NfaTest {
 
     @Test
     public void returnTrueWhenStringBelongsToLanguage() {
-        sy.setRegex("(0|1)*|(0.1)*");
+        sy.setRegex("(0|1)*|(01)*01");
         String regex = sy.infixToPostfix();
         nfa = new Nfa(regex);
         nfa.constructNfa();  
-        assertTrue(nfa.simulate("01"));
-    }    
+        assertTrue(nfa.simulate("101"));
+    }              
+    
+    @Test
+    public void returnFalseWhenStringIsNotPartOfLanguage() {
+        sy.setRegex("(k|m|t)atti");
+        String regex = sy.infixToPostfix();
+        nfa = new Nfa(regex);
+        nfa.constructNfa();  
+        assertFalse(nfa.simulate("patti"));                
+    }
 }

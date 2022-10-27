@@ -1,5 +1,9 @@
 package regextonfa.main;
 
+/**
+ * Represents an allowed move from node x to
+ * node y when character 'value' is read.
+ */
 public class Transition {
     Node x;
     Node y;

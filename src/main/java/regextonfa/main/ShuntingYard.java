@@ -2,6 +2,10 @@ package regextonfa.main;
 
 import java.util.Stack;
 
+/**
+ * Checks the validity of input and transforms
+ * into into postfix form.
+ */
 public class ShuntingYard {   
     String regex;    
     

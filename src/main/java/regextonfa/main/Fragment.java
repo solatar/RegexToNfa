@@ -2,16 +2,15 @@ package regextonfa.main;
 
 import java.util.HashSet;
 
+/**
+ * A fragment is a partial NFA represented by its starting node
+ * and outgoing arrows. Other nodes and edges are not tracked. 
+ * A fragment does not have an accept state.
+ */
 public class Fragment {
     Node start;
     HashSet<Transition> pointers;
 
-    /**
-     * A fragment is a partial NFA represented by its starting node
-     * and outgoing arrows. Other nodes and edges are not tracked. 
-     * A fragment does not have an accept state.
-     * @param start 
-     */
     public Fragment(Node start) {
         this.start = start;
         this.pointers = new HashSet<>();

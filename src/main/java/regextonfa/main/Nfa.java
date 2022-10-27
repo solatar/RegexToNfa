@@ -1,8 +1,9 @@
 package regextonfa.main;
 
-import java.util.HashSet;
 import java.util.Stack;
-
+/**
+ * Constructs and simulates the automaton.
+ */
 public class Nfa {
     String regex;
     char[][] graph;
@@ -23,7 +24,7 @@ public class Nfa {
         }
     }   
     /**
-     * Constructs a non-finite automaton representing the regular 
+     * Constructs a non-deterministic automaton representing the regular 
      * expression that the Nfa object has as a parameter. The method
      * is based on Thompson's construction algorithm.
      * @return a two-dimensional array. Character in [x][y] means
@@ -93,6 +94,7 @@ public class Nfa {
                 stack.push(closure);         
                 nodeName++;
             }
+            //one or more: 
             if (current == '+') {
                 Fragment oneOrMore = stack.pop();
                 Node newEnd = new Node (nodeName);
@@ -148,21 +150,25 @@ public class Nfa {
         currentList.add(start);
         int i = 0;
         while (i < l ) {
+            int matchNode = 999;
             char ch = candidate.charAt(i);
             while (!currentList.isEmpty()) {
+                System.out.println("index: " +i);
+                System.out.println("char: " +ch);
+                System.out.println(currentList);
             int current = currentList.pop();
-            if (i == l-1 && current == goal) {
+                System.out.println("node: " +current);
+            if (i == l-1 && current == goal && ch == '@') {
                 return true;
             } else  {
                 for (int j = 0; j <= nodeName; j++) {
-                    if (i == l-1 && (graph[current][j] == ch) && j == goal) {
+                    if (i == l-1 && graph[current][j] == ch && j == goal) {
                         return true;
                     } else if (graph[current][j] == 'e') {
                         if (!currentList.contains(j)) currentList.add(j);
-                        if (!nextList.contains(j)) nextList.add(j);
-                        
-                    } else if (graph[current][j] == ch) {
-                        if  (!currentList.contains(j)) currentList.add(j);                                         
+                        if (j == matchNode && !nextList.contains(j)) nextList.add(j);                        
+                    } else if (graph[current][j] == ch) {      
+                        matchNode = j;
                         if (!nextList.contains(j)) nextList.add(j);
                         ch = '@';
                     } else continue;
