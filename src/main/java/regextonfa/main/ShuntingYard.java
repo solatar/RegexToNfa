@@ -86,6 +86,9 @@ public class ShuntingYard {
             char c = regex.charAt(i);
             // If the scanned Token is an
             // operand, add it to output
+            if (c == '@' || c == '#') {
+                return "This expression is invalid";
+            }
             if (letterOrDigit(c)) {
                 output += c;
             }              

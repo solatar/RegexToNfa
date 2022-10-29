@@ -153,37 +153,33 @@ public class Nfa {
             int matchNode = 999;
             char ch = candidate.charAt(i);
             while (!currentList.isEmpty()) {
-                System.out.println("index: " +i);
-                System.out.println("char: " +ch);
-                System.out.println(currentList);
-            int current = currentList.pop();
-                System.out.println("node: " +current);
-            if (i == l-1 && current == goal && ch == '@') {
-                return true;
-            } else  {
-                for (int j = 0; j <= nodeName; j++) {
-                    if (i == l-1 && graph[current][j] == ch && j == goal) {
-                        return true;
-                    } else if (graph[current][j] == 'e') {
-                        if (!currentList.contains(j)) currentList.add(j);
-                        if (j == matchNode && !nextList.contains(j)) nextList.add(j);                        
-                    } else if (graph[current][j] == ch) {      
-                        matchNode = j;
-                        if (!nextList.contains(j)) nextList.add(j);
-                        ch = '@';
-                    } else continue;
-                }                 
-                if (ch == candidate.charAt(i) && currentList.isEmpty()) {
-                    return false;
-                }
+                int current = currentList.pop();
+                if (i == l-1 && current == goal && ch == '@') {
+                    return true;
+                } else  {
+                    for (int j = 0; j <= nodeName; j++) {
+                        if (i == l-1 && graph[current][j] == ch && j == goal) {
+                            return true;
+                        } else if (graph[current][j] == 'e') {
+                            if (!currentList.contains(j)) currentList.add(j);
+                            if (j == matchNode && !nextList.contains(j)) nextList.add(j);                        
+                        } else if (graph[current][j] == ch) {      
+                            matchNode = j;
+                            if (!nextList.contains(j)) nextList.add(j);
+                            ch = '@';
+                        } else continue;
+                    }                 
+                    if (ch == candidate.charAt(i) && currentList.isEmpty()) {
+                        return false;
+                    }
+                }               
             }               
-        }               
-        if (ch == '@' && i < l - 1) {
-            i++;
-        }            
-        Stack<Integer> temp = new Stack<>();
-        currentList = nextList;
-        nextList = temp;             
+            if (ch == '@' && i < l - 1) {
+                i++;
+            }            
+            Stack<Integer> temp = new Stack<>();
+            currentList = nextList;
+            nextList = temp;             
         } 
         return false;
     }

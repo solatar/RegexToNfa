@@ -20,5 +20,12 @@ There will be maximum *n* nodes in the automata and each node has either two edg
 or one edge with a proper character transition, so the space complexity is also linear.
 
 The simulation part requires *O(mn)* time, where *n* is the length of the regex and *m* is the length
-of the string to be matched against it. 
+of the string to be matched against it. Simulation method is not based on any known algorithm. It is my own
+attempt, and, therefore, the least stable part of the app. The idea is to maintain two stacks of nodes: one 
+containing the nodes the automaton is currently in and another one of nodes where the automaton will be in
+after processing a character of the string. In most cases the simulation works, but it may still produce false
+results or freeze. The method requires further testing to detect and correct these faults.
+
+Other possible improvements include adding regex operator ?, displaying more instructions in the user interface and 
+displaying the formulated nfa array in the UI instead of printing it into console.
 

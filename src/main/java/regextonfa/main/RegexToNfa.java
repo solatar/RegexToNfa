@@ -35,7 +35,7 @@ public class RegexToNfa extends Application {
         window.add(postfix, 1, 3);
         window.add(new Label("Warnings:"), 0, 4); 
         TextField warning = new TextField();
-        warning.setMinWidth(400);
+        warning.setMinWidth(600);
         window.add(warning, 1, 4);
         TextField result = new TextField();
         window.add(new Label("This string belongs to language :"), 0, 5); 
@@ -56,7 +56,7 @@ public class RegexToNfa extends Application {
                 Nfa nfa = new Nfa(newPostfix);
                 nfa.constructNfa();
                 if (!nfa.getStack().isEmpty()) {
-                    warning.setText("Please check for illegal characters in your regex");
+                    warning.setText("Please check for missing parentheses or illegal characters in your regex");
                 } else {
                     Boolean test = nfa.simulate(newString);
                     result.setText(Boolean.toString(test));                  

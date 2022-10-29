@@ -50,6 +50,7 @@ public class NfaTest {
     @Test
     public void returnTrueWhenStringBelongsToLanguage() {
         sy.setRegex("(0|1)*|(01)*01");
+        sy.addConcatSymbols();
         String regex = sy.infixToPostfix();
         nfa = new Nfa(regex);
         nfa.constructNfa();  
@@ -59,6 +60,7 @@ public class NfaTest {
     @Test
     public void returnFalseWhenStringIsNotPartOfLanguage() {
         sy.setRegex("(k|m|t)atti");
+        sy.addConcatSymbols();
         String regex = sy.infixToPostfix();
         nfa = new Nfa(regex);
         nfa.constructNfa();  

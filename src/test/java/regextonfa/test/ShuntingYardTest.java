@@ -22,7 +22,7 @@ public class ShuntingYardTest {
     }
     
     @Test
-    public void invalidRegexesAreHandled() {
+    public void missingParenthesesAreHandled() {
         sy.setRegex("(a+b)*(c+d");
         String result = sy.infixToPostfix();
         assertEquals("This expression is invalid", result);
@@ -46,4 +46,11 @@ public class ShuntingYardTest {
         }
         assertEquals(3, sum);
     }    
+    
+    @Test
+    public void invalidCharactersAreHandled() {
+        sy.setRegex("(m|(ad)|d)#agio");
+        String result = sy.infixToPostfix();
+        assertEquals("This expression is invalid", result);    
+    }
 }
